@@ -7,8 +7,8 @@ load_dotenv()
 
 NUM_RUNS_TIMES = 5
 
-# TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+# Use chain-of-thought prompting to guide the model
+YOUR_SYSTEM_PROMPT = "Let's think step by step to solve the problem."
 
 
 USER_PROMPT = """

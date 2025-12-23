@@ -6,8 +6,21 @@ load_dotenv()
 
 NUM_RUNS_TIMES = 5
 
-# TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
+# Use few-shot examples to guide the model
+YOUR_SYSTEM_PROMPT = """
+<example>
+input: apple
+output: elppa
+</example>
+<example>
+input: mushroom
+output: moorhsum
+</example>
+<example>
+input: JavaScript
+output: tpircSavaJ
+</example>
+"""
 
 USER_PROMPT = """
 Reverse the order of letters in the following word. Only output the reversed word, no other text:
