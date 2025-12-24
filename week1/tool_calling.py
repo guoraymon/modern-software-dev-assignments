@@ -69,9 +69,13 @@ TOOL_REGISTRY: Dict[str, Callable[..., str]] = {
 # Prompt scaffolding
 # ==========================
 
-# TODO: Fill this in!
-YOUR_SYSTEM_PROMPT = ""
-
+# Guide the model to call the tool correctly
+YOUR_SYSTEM_PROMPT = """
+You are a helpful assistant that can analyze Python code. 
+To list the return types of functions in a file, you must call the tool:
+{"tool": "output_every_func_return_type", "args": {"file_path": ""}}
+Respond ONLY with the JSON object.
+"""
 
 def resolve_path(p: str) -> str:
     if os.path.isabs(p):
