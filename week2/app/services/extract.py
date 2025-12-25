@@ -87,3 +87,60 @@ def _looks_imperative(sentence: str) -> bool:
         "investigate",
     }
     return first.lower() in imperative_starters
+
+def extract_action_items_llm(text: str) -> List[str]:
+    """
+    Extract action items from text using an LLM via Ollama.
+
+    Args:
+        text: Input text to extract action items from
+
+    Returns:
+        List of action items extracted from the text
+    """
+    # Define the prompt to extract action items
+    prompt = f"""
+You are an expert at extracting action items from text. Action items are specific tasks or to-dos that need to be completed.
+
+Here is the input text:
+{text}
+
+Please extract all action items from the text and return them as a JSON array of strings. Each string should represent a single action item. If no action items are found, return an empty array. Action items typically include tasks that start with action verbs like 'create', 'implement', 'fix', 'update', 'write', 'check', 'verify', etc., or items marked with bullets, checkboxes [ ], or keywords like 'todo', 'action', 'next'.
+
+Example outputs:
+- ["Set up database", "Implement API endpoint", "Write tests"]
+- ["Review documentation", "Update user interface"]
+- []
+
+Return ONLY the JSON array without any additional text or explanation.
+"""
+
+    # Use Ollama to generate the response with structured output
+    response = chat(
+        model=os.getenv("OLLAMA_MODEL", "llama3.2"),  # Use smaller model by default for efficiency
+        messages=[{"role": "user", "content": prompt}],
+        options={
+            "temperature": 0,  # Lower temperature for more consistent outputs
+            "num_predict": 500,  # Limit response length
+        },
+        format="json",  # Request JSON format
+    )
+
+    # Extract the content from the response
+    content = response['message']['content']
+
+    # Parse the JSON response
+    try:
+        # The model should return a JSON array, so we parse it directly
+        import json
+        action_items = json.loads(content)
+
+        # Ensure it's a list of strings
+        if isinstance(action_items, list):
+            return [str(item) for item in action_items if item]
+        else:
+            return []
+    except json.JSONDecodeError:
+        # If JSON parsing fails, return an empty list
+        return []
+    
