@@ -275,12 +275,17 @@ skip
 ### Exercise 5: Generate a README from the Codebase
 Prompt: 
 ```
-TODO
+analyze week2 codebase and generate a well-structured `README.md` file. The README should include, at a minimum:
+- A brief overview of the project
+- How to set up and run the project
+- API endpoints and functionality
+- Instructions for running the test suite
+
 ``` 
 
 Generated Code Snippets:
 ```
-TODO: List all modified code files with the relevant line numbers.
+skip
 ```
 
 
