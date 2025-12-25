@@ -116,6 +116,7 @@ Return ONLY the JSON array without any additional text or explanation.
 """
 
     # Use Ollama to generate the response with structured output
+    print("prompt", prompt)
     response = chat(
         model=os.getenv("OLLAMA_MODEL", "llama3.2"),  # Use smaller model by default for efficiency
         messages=[{"role": "user", "content": prompt}],
@@ -123,7 +124,6 @@ Return ONLY the JSON array without any additional text or explanation.
             "temperature": 0,  # Lower temperature for more consistent outputs
             "num_predict": 500,  # Limit response length
         },
-        format="json",  # Request JSON format
     )
 
     # Extract the content from the response

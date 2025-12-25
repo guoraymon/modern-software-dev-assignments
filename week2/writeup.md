@@ -245,24 +245,30 @@ def test_extract_action_items_llm_various_formats(mock_chat):
 ### Exercise 3: Refactor Existing Code for Clarity
 Prompt: 
 ```
-TODO
+
+Perform a refactor of the code in the backend, focusing in particular on well-defined API contracts/schemas, database layer cleanup, app lifecycle/configuration, error handling. 
+
 ``` 
 
 Generated/Modified Code Snippets:
 ```
-TODO: List all modified code files with the relevant line numbers. (We anticipate there may be multiple scattered changes here – just produce as comprehensive of a list as you can.)
+skip
 ```
 
 
 ### Exercise 4: Use Agentic Mode to Automate a Small Task
 Prompt: 
 ```
-TODO
+
+1. Integrate the LLM-powered extraction as a new endpoint. Update the frontend to include an "Extract LLM" button that, when clicked, triggers the extraction process via the new endpoint.
+
+2. Expose one final endpoint to retrieve all notes. Update the frontend to include a "List Notes" button that, when clicked, fetches and displays them.
+
 ``` 
 
 Generated Code Snippets:
 ```
-TODO: List all modified code files with the relevant line numbers.
+skip
 ```
 
 
